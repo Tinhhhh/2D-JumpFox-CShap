@@ -36,4 +36,9 @@ public class PlayerAnimation : MonoBehaviour
     {
         animator.SetFloat(moveY, dirY);
     }
+
+    public void setHoldJumpAnimation(bool value)
+    {
+        animator.SetBool(HoldJump, value);
+    }
 }
