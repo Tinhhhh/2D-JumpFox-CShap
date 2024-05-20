@@ -41,6 +41,8 @@ public class PlayerMovement : MonoBehaviour
         {
             canJump = true;
             Movement();
+        } else {
+            Debug.Log("ko tren mat dat");
         }
         Jump();
 
