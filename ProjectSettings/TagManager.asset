@@ -40,14 +40,14 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Decoration
-    uniqueID: 4129176683
-    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
   - name: Platform
     uniqueID: 2598186387
+    locked: 0
+  - name: Decoration
+    uniqueID: 4129176683
     locked: 0
   - name: Diamond
     uniqueID: 1178260383
