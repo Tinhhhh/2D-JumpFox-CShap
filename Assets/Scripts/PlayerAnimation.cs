@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerAnimation : MonoBehaviour
 {
+    public static PlayerAnimation instance;
     private readonly int moveX = Animator.StringToHash("MoveX");
     private readonly int moveY = Animator.StringToHash("MoveY");
     private readonly int moving = Animator.StringToHash("Moving");
@@ -14,6 +15,10 @@ public class PlayerAnimation : MonoBehaviour
 
     private void Awake()
     {
+        if (instance == null)
+        {
+            instance = this;
+        }
         animator = GetComponent<Animator>();
     }
 

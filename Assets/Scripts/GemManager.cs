@@ -8,7 +8,7 @@ public class GemManager : MonoBehaviour
     public static GemManager instance;
     [SerializeField] private TMP_Text gemsDisplay;
 
-    private int gems;
+    public int gems;
     private void Awake()
     {
         if (!instance)

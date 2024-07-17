@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
@@ -12,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private CapsuleCollider2D cc;
     [SerializeField] private PhysicsMaterial2D bounceMat, normalMat;
 
+    public static bool isInputEnabled;
 
     private float dirX;
     private float dirY;
@@ -24,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        isInputEnabled = true;
         cc = GetComponent<CapsuleCollider2D>();
         bc = GetComponent<BoxCollider2D>();
         rb = GetComponent<Rigidbody2D>();
@@ -32,16 +35,33 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        if (PlayerPrefs.HasKey("isContinue"))
+        {
+            float x = PlayerPrefs.GetFloat("PlayerX");
+            float y = PlayerPrefs.GetFloat("PlayerY");
+            float z = PlayerPrefs.GetFloat("PlayerZ");
+            transform.position = new Vector3(x, y, z);
+
+            GemManager.instance.gems = PlayerPrefs.GetInt("Gem");
+            PlayerPrefs.DeleteKey("isContinue");
+            Debug.Log("Player position loaded");
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!isInputEnabled)
+        {
+            return;
+        }
         if (IsGrounded())
         {
             canJump = true;
             Movement();
-        } else {
+        }
+        else
+        {
             Debug.Log("ko tren mat dat");
         }
         Jump();
@@ -67,8 +87,6 @@ public class PlayerMovement : MonoBehaviour
         {
             playerAnimation.setHoldJumpAnimation(false);
         }
-
-
 
     }
     private void Jump()
@@ -103,7 +121,7 @@ public class PlayerMovement : MonoBehaviour
                 rb.velocity = new Vector2(dirX * speed, jumpValue);
                 jumpValue = 0.0f;
             }
-            // canJump = true;
+
             //Set the animator MoveY
             dirY = rb.velocity.y;
             playerAnimation.SetJumpingAnimation(rb.velocity.y);
