@@ -12,9 +12,11 @@ public class PauseMenuFeature : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+
             if (pauseMenu.activeSelf)
             {
                 Resume();
+                PlayerMovement.isInputEnabled = true;
             }
             else
             {
@@ -25,6 +27,7 @@ public class PauseMenuFeature : MonoBehaviour
 
     public void Pause()
     {
+        PlayerMovement.isInputEnabled = false;
         pauseMenu.SetActive(true);
         Time.timeScale = 0;
     }
