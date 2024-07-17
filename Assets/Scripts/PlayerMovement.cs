@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Config")]
+    public static PlayerMovement instance;
     [SerializeField] private float speed = 8f;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
@@ -26,6 +27,12 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        if (instance == null)
+        {
+            instance = this;
+        }
+
+
         isInputEnabled = true;
         cc = GetComponent<CapsuleCollider2D>();
         bc = GetComponent<BoxCollider2D>();

@@ -11,7 +11,7 @@ public class CameraMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (transform.position.y < 1033)
+        if (transform.position.y < 179.5)
         {
             Camera(isMoving);
         }
